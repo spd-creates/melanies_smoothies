@@ -19,8 +19,6 @@ st.write("The name of Smoothie will be: ", name_on_order)
 
 # my_dataframe = session.table("smoothies.public.fruit_options")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
-# st.dataframe(data=my_dataframe, use_container_width=True)
-# st.stop()
 
 #convert snowpark dataframe to a Pandas Dataframe
 pd_df=my_dataframe.to_pandas()

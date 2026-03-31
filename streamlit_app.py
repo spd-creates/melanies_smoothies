@@ -34,8 +34,9 @@ if ingredients_list:   #if any ingredients exist
     
     for choosen_fruit in ingredients_list:
         ingredients_string += choosen_fruit + ' '
+        st.subheader(choosen_fruit + 'Nutrition Information')
         # smoothiefroot_response = requests.get("[https://my.smoothiefroot.com/api/fruit/watermelon](https://my.smoothiefroot.com/api/fruit/watermelon)")  
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + choosen_fruit)
         
         sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
@@ -43,9 +44,6 @@ if ingredients_list:   #if any ingredients exist
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
                     values ('""" + ingredients_string + """', '""" + name_on_order + """'
                     )"""
-    # st.write(my_insert_stmt)
-    # st.stop()
-
     #submit button
     time_to_insert = st.button('Submit Order')
     
